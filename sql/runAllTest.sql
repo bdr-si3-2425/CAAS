@@ -1,0 +1,1 @@
+CALL test.test_format_num_tel();
