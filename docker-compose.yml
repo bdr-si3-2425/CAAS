@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    ports:
+      - 993:5432
+    volumes:
+      - ~/apps/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=wFRpWJY5gF7tkF
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=co-living
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=wFRpWJY5gF7tkF
+    ports:
+      - "8006:80"
