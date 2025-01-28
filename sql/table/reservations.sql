@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS reservations;
+
 CREATE TABLE reservations (
     id_reservation SERIAL PRIMARY KEY,
     id_logement INT NOT NULL,

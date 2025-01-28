@@ -1,5 +1,4 @@
-DROP TABLE IF EXISTS residents_conflits;
-DROP TABLE IF EXISTS conflits;
+
 
 CREATE TABLE conflits (
     id_conflit SERIAL PRIMARY KEY,

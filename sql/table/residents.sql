@@ -1,4 +1,3 @@
-DROP TABLE IF EXISTS residents;
 
 CREATE TABLE residents
 (
