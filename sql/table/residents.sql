@@ -4,7 +4,7 @@ CREATE TABLE residents
     id_resident SERIAL PRIMARY KEY,
     nom         VARCHAR(100) NOT NULL,
     prenom      VARCHAR(100) NOT NULL,
-    num_tel     VARCHAR(15)  NOT NULL UNIQUE,
+    num_tel     VARCHAR(40)  NOT NULL UNIQUE,
     CHECK (char_length(nom) > 1),             -- Vérifie que le nom a au moins 2 caractères
     CHECK (char_length(prenom) > 1)           -- Vérifie que le prénom a au moins 2 caractères
 );
