@@ -56,6 +56,7 @@ EXECUTE FUNCTION trigger_format_num_tel();
 CREATE OR REPLACE PROCEDURE test.test_format_num_tel() LANGUAGE plpgsql AS $$
 BEGIN
     -- arrange
+    DROP TABLE IF EXISTS test_residents;
     CREATE TEMP TABLE test_residents (num_tel TEXT);
     INSERT INTO test_residents (num_tel) VALUES
                                              ('0123456789'),

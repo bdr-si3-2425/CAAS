@@ -1,6 +1,8 @@
 DROP TABLE IF EXISTS residents_conflits;
 DROP TABLE IF EXISTS conflits;
 DROP TABLE IF EXISTS residents CASCADE;
+DROP FUNCTION IF EXISTS public.format_num_tel(text);
+DROP FUNCTION IF EXISTS public.trigger_format_num_tel();
 DROP TABLE IF EXISTS logements CASCADE;
 DROP TABLE IF EXISTS type_logements;
 DROP TABLE IF EXISTS reservations CASCADE;
