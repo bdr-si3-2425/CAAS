@@ -71,10 +71,14 @@ VALUES {','.join(values)};"""
 
 def generate_residents_reservations_inserts(num_links=70):
     values = []
-    for _ in range(num_links):
-        values.append(f"""(
-    {random.randint(1, 20)},
-    {random.randint(1, 50)}
+    pairs = set() # Pour éviter répet des primary key
+    while len(pairs) < num_links:
+        id_resident = random.randint(1, 20)
+        id_reservation = random.randint(1, 50)
+        if(id_resident, id_reservation) not in pairs:
+            values.append(f"""(
+    {id_resident},
+    {id_reservation}
 )""")
 
     return f"""
@@ -110,7 +114,7 @@ VALUES {','.join(values)};"""
 def generate_residents_conflits_inserts(num_links=50):
     pairs = set() # Pour éviter répet des primary key
     values = []
-    while (len(pairs) < num_links):
+    while len(pairs) < num_links:
         id_resident = random.randint(1, 20)
         id_conflit = random.randint(1, 50)
         if(id_resident, id_conflit) not in pairs:
