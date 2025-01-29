@@ -9,7 +9,7 @@ NUM_LOGEMENTS=8
 NUM_RESIDENTS=25
 NUM_RESERVATION=10
 NUM_EVENEMENT=10
-
+NUM_CONFLICTS=6
 #enums:
 NB_TYPE_LOGEMENTS=8
 NB_CATEGORIE=6
@@ -17,6 +17,7 @@ NB_TYPE_MAINTENANCE=7
 
 #links:
 NUM_LINKS_RESIDENTS_RESERVATIONS=30
+NUM_LINKS_RESIDENTS_CONFLITS=15
 
 def generate_site_inserts(num_sites):
     values = []
@@ -86,16 +87,62 @@ VALUES {','.join(values)};"""
 
 def generate_residents_reservations_inserts(num_links):
     values = []
-    for _ in range(num_links):
-        values.append(f"""(
-    {random.randint(1, NUM_RESIDENTS)},
-    {random.randint(1, NUM_RESERVATION)}
+    pairs = set() # Pour éviter répet des primary key
+    while len(pairs) < num_links:
+        id_resident = random.randint(1, NUM_RESIDENTS)
+        id_reservation = random.randint(1, NUM_RESERVATION)
+        if(id_resident, id_reservation) not in pairs:
+            values.append(f"""(
+    {id_resident},
+    {id_reservation}
 )""")
 
     return f"""
 INSERT INTO residents_reservations (id_resident, id_reservation)
 VALUES {','.join(values)};"""
 
+def generate_conflits_inserts(num_conflicts):
+    values = []
+    for _ in range(num_conflicts):
+        fake = Faker()
+        conflicts = ["Bagarre", "Tapage nocture", "Vol"]
+        descriptions = ["Bagarre pour avoir le dernier transat de la piscine", "Les résidents écoutaient de la musique jusqu\'à 3 heures du matin", "Le résident a volé une serviette sur un transat de la piscine"]
+
+        title = fake.word(ext_word_list=conflicts)
+        description = " ".join(fake.sentences(nb=1, ext_word_list=descriptions))
+        signal_date = fake.date_between(start_date='-90d', end_date='+0d')
+        state = fake.boolean(chance_of_getting_true=0)
+
+        # Escape the description to handle apostrophes
+        escaped_description = description.replace("'", "''")
+
+        values.append(f"""(
+    '{state}',
+    '{title}',
+    '{escaped_description}',
+    '{signal_date}'    
+)""")
+
+    return f"""
+INSERT INTO conflits (etat, titre, description, date_signalement)
+VALUES {','.join(values)};"""
+
+def generate_residents_conflits_inserts(num_links):
+    pairs = set() # Pour éviter répet des primary key
+    values = []
+    while len(pairs) < num_links:
+        id_resident = random.randint(1, NUM_RESIDENTS)
+        id_conflit = random.randint(1, NUM_CONFLICTS)
+        if(id_resident, id_conflit) not in pairs:
+            pairs.add((id_resident, id_conflit))
+            values.append(f"""(
+    {id_resident},
+    {id_conflit}
+)""")
+
+    return f"""
+INSERT INTO residents_conflits (id_resident, id_conflit)
+VALUES {','.join(values)};"""
 
 def generate_evenement_inserts(num_evenement):
     values = []
@@ -144,6 +191,10 @@ with open('../sql/insert/data.sql', 'w', encoding='utf-8') as f:
     f.write("\n\n")
     f.write(generate_reservations_inserts(NUM_RESERVATION))
     f.write("\n\n")
-    # f.write(generate_residents_reservations_inserts(NUM_LINKS_RESIDENTS_RESERVATIONS))
+    # f.write(generate_residents_reservations_inserts())
     # f.write("\n\n")
+    f.write(generate_conflits_inserts(NUM_CONFLICTS))
+    f.write("\n\n")
+    f.write(generate_residents_conflits_inserts(NUM_LINKS_RESIDENTS_CONFLITS))
+    f.write("\n\n")
     f.write(generate_evenement_inserts(NUM_EVENEMENT))
