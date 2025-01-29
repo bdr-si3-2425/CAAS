@@ -79,8 +79,6 @@ BEGIN
 
     assert((SELECT formatted_num FROM result WHERE num_tel = '123-456-789') = '+123456789'),
         'Expected +123456789, got ' || (SELECT formatted_num FROM result WHERE num_tel = '123-456-789')::text;
-
-    ROLLBACK;
 END;
 $$;
 
