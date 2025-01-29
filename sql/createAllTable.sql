@@ -19,3 +19,5 @@
 \i 'table/type_maintenance.sql'
 
 \i 'table/maintenance.sql'
+
+\i 'insert/enum.sql'
