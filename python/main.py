@@ -107,6 +107,18 @@ def generate_conflits_inserts(num_conflicts=50):
 INSERT INTO conflits (etat, titre, description, date_signalement)
 VALUES {','.join(values)};"""
 
+def generate_residents_conflits_inserts(num_links=50):
+    values = []
+    for _ in range(num_links):
+        values.append(f"""(
+    {random.randint(1, 20)},
+    {random.randint(1, 50)}
+)""")
+
+    return f"""
+INSERT INTO residents_conflits (id_resident, id_conflit)
+VALUES {','.join(values)};"""
+
 # Générer le fichier SQL final
 with open('../sql/insert/data.sql', 'w', encoding='utf-8') as f:
     f.write("-- Insertion des données de test en batch\n\n")
@@ -121,3 +133,4 @@ with open('../sql/insert/data.sql', 'w', encoding='utf-8') as f:
     # f.write(generate_residents_reservations_inserts())
     f.write(generate_conflits_inserts())
     f.write("\n\n")
+    f.write(generate_residents_conflits_inserts())
