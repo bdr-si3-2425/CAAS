@@ -83,7 +83,7 @@ VALUES {','.join(values)};"""
 
 
 # Générer le fichier SQL final
-with open('data.sql', 'w', encoding='utf-8') as f:
+with open('../sql/insert/data.sql', 'w', encoding='utf-8') as f:
     f.write("-- Insertion des données de test en batch\n\n")
     f.write("BEGIN;\n\n")  # Début de la transaction
     f.write(generate_site_inserts())
