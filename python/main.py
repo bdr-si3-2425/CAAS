@@ -81,6 +81,31 @@ def generate_residents_reservations_inserts(num_links=70):
 INSERT INTO residents_reservations (id_resident, id_reservation)
 VALUES {','.join(values)};"""
 
+def generate_conflits_inserts(num_conflicts=50):
+    values = []
+    for _ in range(num_conflicts):
+        fake = Faker()
+        conflicts = ["Bagarre", "Tapage nocture", "Vol"]
+        descriptions = ["Bagarre pour avoir le dernier transat de la piscine", "Les résidents écoutaient de la musique jusqu\'à 3 heures du matin", "Le résident a volé une serviette sur un transat de la piscine"]
+        
+        title = fake.word(ext_word_list=conflicts)
+        description = " ".join(fake.sentences(nb=1, ext_word_list=descriptions))
+        signal_date = fake.date_between(start_date='-90d', end_date='+0d')
+        state = fake.boolean(chance_of_getting_true=0)
+
+        # Escape the description to handle apostrophes
+        escaped_description = description.replace("'", "''")
+
+        values.append(f"""(
+    '{state}',
+    '{title}',
+    '{escaped_description}',
+    '{signal_date}'    
+)""")
+
+    return f"""
+INSERT INTO conflits (etat, titre, description, date_signalement)
+VALUES {','.join(values)};"""
 
 # Générer le fichier SQL final
 with open('../sql/insert/data.sql', 'w', encoding='utf-8') as f:
@@ -94,3 +119,5 @@ with open('../sql/insert/data.sql', 'w', encoding='utf-8') as f:
     f.write(generate_reservations_inserts())
     f.write("\n\n")
     # f.write(generate_residents_reservations_inserts())
+    f.write(generate_conflits_inserts())
+    f.write("\n\n")
