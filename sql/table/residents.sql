@@ -5,6 +5,7 @@ CREATE TABLE residents
     nom         VARCHAR(100) NOT NULL,
     prenom      VARCHAR(100) NOT NULL,
     num_tel     VARCHAR(40)  NOT NULL UNIQUE,
+    date_naissance DATE NOT NULL,
     CHECK (char_length(nom) > 1),             -- Vérifie que le nom a au moins 2 caractères
     CHECK (char_length(prenom) > 1)           -- Vérifie que le prénom a au moins 2 caractères
 );

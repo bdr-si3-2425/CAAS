@@ -1,5 +1,6 @@
 \i 'table/drop.sql'
 
+
 \i 'table/residents.sql'
 
 \i 'table/type_logements.sql'
@@ -13,6 +14,8 @@
 \i 'table/equipements.sql'
 
 \i 'table/conflits.sql'
+
+\i 'table/categorie.sql'
 
 \i 'table/evenement.sql'
 

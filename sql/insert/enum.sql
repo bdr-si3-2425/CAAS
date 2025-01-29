@@ -35,3 +35,11 @@ VALUES ('Plomberie'),
        ('Jardinage'),
        ('Chauffage'),
        ('Climatisation');
+
+INSERT INTO categorie (categorie)
+VALUES ('Enfant'),
+       ('Adulte'),
+       ('Senior'),
+       ('Sportif'),
+       ('Dyslexique'),
+       ('Tout Public');
