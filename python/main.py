@@ -108,11 +108,16 @@ INSERT INTO conflits (etat, titre, description, date_signalement)
 VALUES {','.join(values)};"""
 
 def generate_residents_conflits_inserts(num_links=50):
+    pairs = set() # Pour éviter répet des primary key
     values = []
-    for _ in range(num_links):
-        values.append(f"""(
-    {random.randint(1, 20)},
-    {random.randint(1, 50)}
+    while (len(pairs) < num_links):
+        id_resident = random.randint(1, 20)
+        id_conflit = random.randint(1, 50)
+        if(id_resident, id_conflit) not in pairs:
+            pairs.add((id_resident, id_conflit))
+            values.append(f"""(
+    {id_resident},
+    {id_conflit}
 )""")
 
     return f"""
