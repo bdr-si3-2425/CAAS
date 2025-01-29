@@ -92,8 +92,26 @@ def generate_conflits_inserts(num_conflicts=50):
         conflicts = ["Bagarre", "Tapage nocture", "Vol"]
         descriptions = ["Bagarre pour avoir le dernier transat de la piscine", "Les résidents écoutaient de la musique jusqu\'à 3 heures du matin", "Le résident a volé une serviette sur un transat de la piscine"]
         
-        title = fake.word(ext_word_list=conflicts)
-        description = " ".join(fake.sentences(nb=1, ext_word_list=descriptions))
+
+        conflicts_tilte_description = {
+            "Bagarre": [
+                "Bagarre autour d'une place de parking.",
+                "Altercation pour avoir la dernière chaise longue au bord de la piscine.",
+                "Dispute physique lors d'un événement résidentiel."
+            ],
+            "Tapage nocturne": [
+                "Musique très forte jusqu'à 3 heures du matin.",
+                "Les résidents ont organisé une fête très bruyante toute la nuit.",
+                "Des cris incessants dans les couloirs après minuit."
+            ],
+            "Vol": [
+                "Un résident a été surpris en train de voler une serviette au bord de la piscine.",
+                "Un vélo a été volé dans le parking résidentiel.",
+                "Des objets ont disparu dans la buanderie partagée."
+            ]
+        }
+        title = fake.random_element(elements=conflicts_tilte_description.keys())
+        description = fake.random_element(elements=conflicts_tilte_description[title]) 
         signal_date = fake.date_between(start_date='-90d', end_date='+0d')
         state = fake.boolean(chance_of_getting_true=0)
 
