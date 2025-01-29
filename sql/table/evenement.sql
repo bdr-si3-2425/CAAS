@@ -3,11 +3,11 @@ CREATE TABLE evenement (
    id_evenement SERIAL PRIMARY KEY,
    type VARCHAR(255) NOT NULL,
    titre VARCHAR(255) NOT NULL,
-   --id_site INT NOT NULL,
+   id_site INT NOT NULL,
    date_signalement DATE DEFAULT CURRENT_DATE NOT NULL,
    CHECK (char_length(type) > 1),
-   CHECK (char_length(titre) > 1)
-   --FOREIGN KEY (id_site) REFERENCES site(id_site)
+   CHECK (char_length(titre) > 1),
+   FOREIGN KEY (id_site) REFERENCES site(id_site)
 );
 
 
