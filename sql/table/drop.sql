@@ -9,5 +9,8 @@ DROP TABLE IF EXISTS reservations CASCADE;
 DROP TABLE IF EXISTS residents_reservations;
 DROP TABLE IF EXISTS logements_equipements;
 DROP TABLE IF EXISTS equipements;
+DROP TABLE IF EXISTS maintenance;
+DROP TABLE IF EXISTS type_maintenance;
 DROP TABLE IF EXISTS residents_evenement;
 DROP TABLE IF EXISTS evenement;
+DROP TABLE IF EXISTS site;
