@@ -11,3 +11,5 @@
 \i 'table/equipements.sql'
 
 \i 'table/conflits.sql'
+
+\i 'table/evenement.sql'
