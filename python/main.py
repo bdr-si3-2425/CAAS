@@ -88,10 +88,6 @@ VALUES {','.join(values)};"""
 def generate_conflits_inserts(num_conflicts=50):
     values = []
     for _ in range(num_conflicts):
-        fake = Faker()
-        conflicts = ["Bagarre", "Tapage nocture", "Vol"]
-        descriptions = ["Bagarre pour avoir le dernier transat de la piscine", "Les résidents écoutaient de la musique jusqu\'à 3 heures du matin", "Le résident a volé une serviette sur un transat de la piscine"]
-        
 
         conflicts_tilte_description = {
             "Bagarre": [
