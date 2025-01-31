@@ -1,12 +1,12 @@
 
 CREATE TABLE evenement (
    id_evenement SERIAL PRIMARY KEY,
-   type VARCHAR(255) NOT NULL,
+   id_categorie INT NOT NULL,
    titre VARCHAR(255) NOT NULL,
    id_site INT NOT NULL,
-   date_signalement DATE DEFAULT CURRENT_DATE NOT NULL,
+   date_evenement DATE DEFAULT CURRENT_DATE NOT NULL,
    description TEXT,
-   CHECK (char_length(type) > 1),
+   FOREIGN KEY (id_categorie) REFERENCES categorie(id_categorie),
    CHECK (char_length(titre) > 1),
    CHECK (description IS NULL OR char_length(description) >= 10),
    FOREIGN KEY (id_site) REFERENCES site(id_site)

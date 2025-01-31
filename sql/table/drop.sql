@@ -14,3 +14,4 @@ DROP TABLE IF EXISTS type_maintenance;
 DROP TABLE IF EXISTS residents_evenement;
 DROP TABLE IF EXISTS evenement;
 DROP TABLE IF EXISTS site;
+DROP TABLE IF EXISTS categorie;
