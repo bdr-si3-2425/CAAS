@@ -3,321 +3,457 @@
 
 INSERT INTO site (adresse, ville, pays, code_postal, nom_site, indice_forfaitaire)
 VALUES (
-    'rue Fernandez',
-    'Morin',
+    '8, avenue Jeanne Humbert',
+    'Weiss',
     'France',
-    04328,
-    'Résidence Roger',
-    1.28
+    38910,
+    'Résidence Alexandre',
+    1.1
 ),(
-    '7, chemin de Leblanc',
-    'Descamps-sur-Mer',
+    '43, avenue Rossi',
+    'KleinBourg',
     'France',
-    83812,
-    'Résidence Gonzalez',
-    1.75
+    80687,
+    'Résidence Guibert',
+    1.19
 ),(
-    '97, rue Cécile Ferrand',
-    'Louis',
+    '385, chemin Teixeira',
+    'Seguin',
     'France',
-    17647,
-    'Résidence Albert',
-    1.01
+    20267,
+    'Résidence Fouquet',
+    1.21
 );
 
 
 INSERT INTO residents (nom, prenom, num_tel,date_naissance)
 VALUES (
-    'Guillot',
-    'Alfred',
-    '0382763225',
-    '1936-03-18'
+    'Denis',
+    'Aimé',
+    '+33 1 58 02 91 56',
+    '1904-12-12'
 ),(
-    'Tessier',
-    'Aurore',
-    '+33 (0)2 44 14 42 77',
-    '1934-10-30'
+    'Martin',
+    'Claude',
+    '0297802195',
+    '1987-06-16'
 ),(
-    'Morel',
-    'Thomas',
-    '+33 (0)5 65 77 23 98',
-    '1957-05-16'
+    'Gonzalez',
+    'David',
+    '+33 (0)4 27 99 56 41',
+    '1904-08-11'
 ),(
-    'Morvan',
-    'Jeannine',
-    '+33 3 76 75 86 10',
-    '1900-10-24'
+    'Gosselin',
+    'Adrienne',
+    '+33 (0)1 40 02 17 00',
+    '1983-07-02'
 ),(
-    'Letellier',
-    'Véronique',
-    '+33 3 87 25 00 19',
-    '1987-10-29'
-),(
-    'Andre',
-    'Amélie',
-    '+33 (0)4 26 98 76 81',
-    '1916-03-04'
-),(
-    'Jacquot',
-    'Élisabeth',
-    '0236389018',
-    '1918-03-10'
-),(
-    'Perret',
-    'Charlotte',
-    '0230220859',
-    '1994-03-24'
-),(
-    'Descamps',
-    'Nathalie',
-    '+33 1 80 95 21 65',
-    '1944-10-20'
-),(
-    'Coste',
-    'Éric',
-    '0432541850',
-    '1950-02-09'
-),(
-    'Dupont',
-    'Paulette',
-    '+33 (0)1 88 88 42 96',
-    '1952-11-02'
-),(
-    'Mendès',
-    'Suzanne',
-    '0147306689',
-    '1932-08-25'
-),(
-    'Joubert',
-    'Alfred',
-    '+33 (0)3 26 98 61 45',
-    '1979-12-15'
-),(
-    'Dupré',
-    'Bernard',
-    '0559042207',
-    '1938-01-24'
-),(
-    'Samson',
-    'Alix',
-    '+33 (0)7 94 19 95 43',
-    '1946-01-17'
-),(
-    'Fernandez',
-    'Dorothée',
-    '+33 (0)3 67 64 74 93',
-    '1996-07-25'
-),(
-    'Paul',
-    'Michelle',
-    '+33 (0)6 98 64 59 18',
-    '1910-05-11'
-),(
-    'Albert',
-    'Mathilde',
-    '03 70 54 44 19',
-    '1965-11-10'
-),(
-    'Lefort',
-    'Monique',
-    '+33 (0)2 29 54 68 92',
-    '1984-04-04'
-),(
-    'Evrard',
-    'Nicole',
-    '0382126210',
-    '1974-09-29'
-),(
-    'Petitjean',
-    'Astrid',
-    '0491029296',
-    '1962-04-30'
-),(
-    'Roche',
-    'Simone',
-    '01 39 55 81 06',
-    '1902-08-24'
-),(
-    'Guérin',
-    'Guillaume',
-    '0582213794',
-    '2018-03-23'
+    'Guilbert',
+    'Margot',
+    '+33 3 60 29 66 56',
+    '2010-08-22'
 ),(
     'Chevalier',
-    'Éléonore',
-    '+33 (0)2 96 70 50 92',
-    '1952-07-24'
+    'Lucy',
+    '+33 7 81 17 97 96',
+    '1985-05-09'
 ),(
-    'Foucher',
-    'Émilie',
-    '+33 2 97 33 38 79',
-    '2022-01-12'
+    'Delorme',
+    'Xavier',
+    '+33 (0)5 53 04 12 01',
+    '1908-03-01'
+),(
+    'Le Goff',
+    'Pénélope',
+    '+33 2 85 41 75 91',
+    '1907-12-20'
+),(
+    'Raynaud',
+    'Laurent',
+    '04 66 03 93 85',
+    '1903-02-11'
+),(
+    'Rossi',
+    'Grégoire',
+    '04 37 07 73 07',
+    '2005-12-19'
+),(
+    'Mary',
+    'Henriette',
+    '+33 (0)2 96 89 43 79',
+    '2019-02-01'
+),(
+    'Pascal',
+    'Tristan',
+    '+33 (0)5 59 52 10 49',
+    '2011-06-23'
+),(
+    'Guilbert',
+    'Aimée',
+    '+33 2 55 22 67 68',
+    '2003-05-23'
+),(
+    'Leroux',
+    'Philippine',
+    '0231192525',
+    '1909-05-19'
+),(
+    'Garcia',
+    'Rémy',
+    '0413257059',
+    '1910-02-22'
+),(
+    'Jacob',
+    'Sabine',
+    '0698085129',
+    '1961-12-17'
+),(
+    'Lopez',
+    'Patrick',
+    '0481393931',
+    '1978-02-23'
+),(
+    'Picard',
+    'Valérie',
+    '+33 4 30 21 63 29',
+    '1941-09-17'
+),(
+    'Fleury',
+    'Charlotte',
+    '+33 7 71 00 09 84',
+    '2003-01-30'
+),(
+    'Cohen',
+    'Jacques',
+    '0258192758',
+    '1943-05-30'
+),(
+    'Bouvier',
+    'Isabelle',
+    '03 83 56 13 45',
+    '1969-11-14'
+),(
+    'Langlois',
+    'Victoire',
+    '+33 2 58 18 02 58',
+    '1919-10-16'
+),(
+    'Guichard',
+    'Colette',
+    '0468270692',
+    '1945-10-03'
+),(
+    'Techer',
+    'Honoré',
+    '0631636800',
+    '1978-07-16'
+),(
+    'Dupuis',
+    'Laure',
+    '0586390878',
+    '1998-10-19'
 );
 
 
 INSERT INTO logements (id_type_logement, id_site, nb_chambre, nb_lits_simples, nb_lits_doubles, surface)
 VALUES (
+    1,
     2,
-    2,
-    1,
-    3,
-    1,
-    82.41
-),(
-    7,
-    1,
     4,
+    1,
     0,
-    0,
-    113.86
+    42.52
+),(
+    5,
+    3,
+    4,
+    4,
+    2,
+    109.25
 ),(
     5,
     1,
     2,
-    3,
-    2,
-    118.34
-),(
-    6,
-    1,
-    3,
     4,
     1,
-    40.9
+    66.56
 ),(
-    7,
-    2,
-    2,
-    3,
-    0,
-    107.58
-),(
-    3,
-    1,
+    4,
     3,
     4,
     0,
-    47.85
+    1,
+    130.57
 ),(
     5,
-    1,
-    1,
-    3,
+    2,
+    2,
     0,
-    116.24
+    1,
+    65.95
+),(
+    2,
+    3,
+    3,
+    4,
+    0,
+    137.44
+),(
+    2,
+    3,
+    1,
+    2,
+    2,
+    77.58
 ),(
     6,
-    3,
-    3,
+    1,
+    1,
     2,
-    2,
-    92.26
+    0,
+    126.05
 );
 
 
 INSERT INTO reservations (id_logement, date_debut, date_fin)
 VALUES (
     7,
-    '2025-01-22',
-    '2025-02-05'
+    '2025-03-07',
+    '2025-03-14'
 ),(
     3,
-    '2025-04-27',
-    '2025-04-28'
+    '2025-02-14',
+    '2025-02-19'
+),(
+    6,
+    '2025-03-17',
+    '2025-03-31'
+),(
+    3,
+    '2025-02-06',
+    '2025-02-14'
+),(
+    1,
+    '2025-03-16',
+    '2025-03-19'
 ),(
     7,
-    '2025-04-09',
-    '2025-04-23'
-),(
-    3,
-    '2025-01-12',
-    '2025-01-23'
-),(
-    8,
-    '2025-03-08',
-    '2025-03-16'
+    '2025-02-09',
+    '2025-02-13'
 ),(
     2,
-    '2025-01-03',
-    '2025-01-09'
+    '2025-03-09',
+    '2025-03-15'
 ),(
-    3,
-    '2025-01-28',
-    '2025-02-02'
+    6,
+    '2025-05-01',
+    '2025-05-10'
+),(
+    2,
+    '2025-03-22',
+    '2025-04-04'
+),(
+    8,
+    '2025-02-18',
+    '2025-02-23'
+);
+
+
+INSERT INTO conflits (etat, titre, description, date_signalement)
+VALUES (
+    'False',
+    'Tapage nocturne',
+    'Les résidents ont organisé une fête très bruyante toute la nuit.',
+    '2025-01-01'    
+),(
+    'False',
+    'Bagarre',
+    'Bagarre autour d''une place de parking.',
+    '2024-12-21'    
+),(
+    'False',
+    'Vol',
+    'Des objets ont disparu dans la buanderie partagée.',
+    '2025-01-08'    
+),(
+    'False',
+    'Vol',
+    'Un vélo a été volé dans le parking résidentiel.',
+    '2025-01-11'    
+),(
+    'False',
+    'Vol',
+    'Des objets ont disparu dans la buanderie partagée.',
+    '2025-01-02'    
+),(
+    'False',
+    'Tapage nocturne',
+    'Les résidents ont organisé une fête très bruyante toute la nuit.',
+    '2024-11-25'    
+);
+
+
+INSERT INTO residents_conflits (id_resident, id_conflit)
+VALUES (
+    10,
+    2
+),(
+    9,
+    2
+),(
+    16,
+    4
+),(
+    6,
+    2
+),(
+    21,
+    4
+),(
+    22,
+    3
+),(
+    17,
+    6
+),(
+    13,
+    5
 ),(
     1,
-    '2025-01-09',
-    '2025-01-20'
+    6
 ),(
-    1,
-    '2025-01-18',
-    '2025-01-30'
+    24,
+    1
+),(
+    23,
+    1
+),(
+    8,
+    1
 ),(
     4,
-    '2025-01-05',
-    '2025-01-18'
+    2
+),(
+    10,
+    5
+),(
+    15,
+    1
+);
+
+
+INSERT INTO maintenance(date, description, rapport, urgence, id_logement, id_type_maintenance)
+VALUES (
+    2024-02-07,
+    'Description : Amélioration et modernisation des équipements et infrastructures.',
+    'Rapport : Maintenance évolutive',
+    True,
+    2,
+    6
+),(
+    2025-01-03,
+    'Description : Amélioration et modernisation des équipements et infrastructures.',
+    'Rapport : Maintenance évolutive',
+    False,
+    4,
+    10
+),(
+    2024-10-12,
+    'Description : Amélioration et modernisation des équipements et infrastructures.',
+    'Rapport : Maintenance évolutive',
+    True,
+    7,
+    4
+),(
+    2024-02-16,
+    'Description : Amélioration et modernisation des équipements et infrastructures.',
+    'Rapport : Maintenance évolutive',
+    False,
+    7,
+    5
+),(
+    2024-05-02,
+    'Description : Amélioration et modernisation des équipements et infrastructures.',
+    'Rapport : Maintenance évolutive',
+    True,
+    7,
+    5
+),(
+    2023-12-10,
+    'Description : Amélioration et modernisation des équipements et infrastructures.',
+    'Rapport : Maintenance évolutive',
+    True,
+    2,
+    1
+),(
+    2024-05-09,
+    'Description : Amélioration et modernisation des équipements et infrastructures.',
+    'Rapport : Maintenance évolutive',
+    False,
+    6,
+    10
 );
 
 
 INSERT INTO evenement (id_categorie, titre, id_site, date_evenement, description)
 VALUES (
     2,
-    'Soirée Jeux de Société',
-    3,
-    '2025-04-19',
-    'Venez découvrir notre collection de jeux et partagez vos favoris avec la communauté.'
+    'Session de Coworking',
+    1,
+    '2025-04-15',
+    'Travaillons ensemble dans l''espace de coworking avec café et snacks offerts.'
 ),(
     5,
-    'Soirée Jeux de Société',
-    3,
-    '2025-03-29',
-    'Venez découvrir notre collection de jeux et partagez vos favoris avec la communauté.'
-),(
-    4,
     'Brunch Participatif',
-    2,
-    '2025-03-17',
+    3,
+    '2025-01-06',
     'Chacun apporte quelque chose pour un brunch convivial dans l''espace commun.'
 ),(
-    4,
-    'Meditation Collective',
-    3,
-    '2025-04-06',
-    'Une heure de méditation guidée pour décompresser ensemble.'
-),(
-    4,
+    6,
     'Atelier Jardinage',
-    2,
-    '2025-02-15',
+    1,
+    '2025-03-23',
     'Entretenons ensemble notre jardin partagé et échangeons nos conseils.'
 ),(
-    2,
-    'Soirée Jeux de Société',
     1,
-    '2025-02-14',
+    'Apéro Colocataires',
+    3,
+    '2025-01-21',
+    'Moment convivial de rencontre entre tous les résidents autour d''un apéritif partagé.'
+),(
+    6,
+    'Apéro Colocataires',
+    2,
+    '2025-03-18',
+    'Moment convivial de rencontre entre tous les résidents autour d''un apéritif partagé.'
+),(
+    1,
+    'Soirée Jeux de Société',
+    2,
+    '2025-02-17',
     'Venez découvrir notre collection de jeux et partagez vos favoris avec la communauté.'
 ),(
-    1,
-    'Atelier Jardinage',
-    1,
-    '2025-04-13',
-    'Entretenons ensemble notre jardin partagé et échangeons nos conseils.'
-),(
-    3,
-    'Session de Coworking',
     2,
-    '2025-04-07',
+    'Session de Coworking',
+    1,
+    '2025-01-05',
     'Travaillons ensemble dans l''espace de coworking avec café et snacks offerts.'
 ),(
     1,
-    'Atelier Jardinage',
-    1,
-    '2025-03-11',
-    'Entretenons ensemble notre jardin partagé et échangeons nos conseils.'
+    'Apéro Colocataires',
+    3,
+    '2025-01-10',
+    'Moment convivial de rencontre entre tous les résidents autour d''un apéritif partagé.'
 ),(
+    6,
+    'Brunch Participatif',
     1,
-    'Soirée Jeux de Société',
+    '2025-01-12',
+    'Chacun apporte quelque chose pour un brunch convivial dans l''espace commun.'
+),(
+    4,
+    'Session de Coworking',
     2,
-    '2025-03-17',
-    'Venez découvrir notre collection de jeux et partagez vos favoris avec la communauté.'
+    '2025-03-03',
+    'Travaillons ensemble dans l''espace de coworking avec café et snacks offerts.'
 );

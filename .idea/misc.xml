@@ -3,5 +3,8 @@
   <component name="Black">
     <option name="sdkName" value="Python 3.11 (CAAS)" />
   </component>
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.11" project-jdk-type="Python SDK" />
+=======
+>>>>>>> 30d014c (création jeu de données pour les tables maintenance et type_maintenance #1 #6)
 </project>

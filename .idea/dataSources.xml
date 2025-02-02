@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+<<<<<<< HEAD
     <data-source source="LOCAL" name="co-living@co-living.corentin.cc" uuid="4cfb4058-8a23-4912-b0fa-8b91c4bb8273">
+=======
+    <data-source source="LOCAL" name="co-linving@co-living.corentin.cc" uuid="49b51f13-215e-4e5a-95cf-d5c2fc1a3fda">
+>>>>>>> 30d014c (création jeu de données pour les tables maintenance et type_maintenance #1 #6)
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
