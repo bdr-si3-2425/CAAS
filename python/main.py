@@ -13,7 +13,13 @@ NUM_CONFLICTS=6
 #enums:
 NB_TYPE_LOGEMENTS=8
 NB_CATEGORIE=6
-NB_TYPE_MAINTENANCE=7
+NUM_MAINTENANCE=7
+NUM_TYPE_MAINTENANCE = 10;
+
+def random_country_biased():
+    fake = Faker()
+    countries = ["France"] * 40 + [fake.country() for _ in range(10)]  # Plus de chances d'obtenir "France"
+    return random.choice(countries)
 
 #links:
 NUM_LINKS_RESIDENTS_RESERVATIONS=30
@@ -25,7 +31,7 @@ def generate_site_inserts(num_sites):
         values.append(f"""(
     '{fake.street_address().replace("'", "''")}',
     '{fake.city().replace("'", "''")}',
-    'France',
+    '{random_country_biased()}',
     {fake.postcode()},
     'Résidence {fake.last_name().replace("'", "''")}',
     {round(random.uniform(1.0, 2.0), 2)}
@@ -99,6 +105,52 @@ def generate_residents_reservations_inserts(num_links):
 
     return f"""
 INSERT INTO residents_reservations (id_resident, id_reservation)
+VALUES {','.join(values)};"""
+
+def generate_maintenance_inserts(num_maintenance=10):
+    values = []
+    titres_maintenance = [
+        "Maintenance préventive",
+        "Maintenance corrective",
+        "Maintenance curative",
+        "Maintenance prédictive",
+        "Maintenance saisonnière",
+        "Maintenance esthétique",
+        "Maintenance hygiénique",
+        "Maintenance énergétique",
+        "Maintenance légale",
+        "Maintenance évolutive",
+    ]
+    descriptions = [
+        "Vérification régulière des équipements pour éviter les pannes.",
+        "Réparation des éléments défectueux après une panne.",
+        "Intervention rapide pour remettre en état un équipement endommagé.",
+        "Surveillance des installations pour anticiper les défaillances.",
+        "Entretien spécifique en fonction des saisons (chauffage en hiver, climatisation en été).",
+        "Rafraîchissement des peintures, revêtements et finitions.",
+        "Nettoyage en profondeur pour éviter moisissures et nuisibles.",
+        "Optimisation des installations pour réduire la consommation d’énergie.",
+        "Respect des obligations réglementaires (diagnostics, normes de sécurité).",
+        "Amélioration et modernisation des équipements et infrastructures.",
+    ]
+
+    for _ in range(num_maintenance):
+        titre_index = random.randint(0, len(titres_maintenance) - 1)
+        titre = titres_maintenance[titre_index]
+        description = descriptions[titre_index]
+
+    for _ in range(num_maintenance):
+        values.append(f"""(
+    {fake.date_between(start_date='-600d', end_date='+0d')},
+    '{"Description : " +description.replace("'", "''")}',
+    '{"Rapport : "+ titre.replace("'", "''")}',
+    {fake.boolean()},
+    {random.randint(1, NUM_LOGEMENTS)},
+    {random.randint(1, NUM_TYPE_MAINTENANCE)}
+)""")
+
+    return f"""
+INSERT INTO maintenance(date, description, rapport, urgence, id_logement, id_type_maintenance)
 VALUES {','.join(values)};"""
 
 def generate_conflits_inserts(num_conflicts):
@@ -210,5 +262,7 @@ with open('../sql/insert/data.sql', 'w', encoding='utf-8') as f:
     f.write(generate_conflits_inserts(NUM_CONFLICTS))
     f.write("\n\n")
     f.write(generate_residents_conflits_inserts(NUM_LINKS_RESIDENTS_CONFLITS))
+    f.write("\n\n")
+    f.write(generate_maintenance_inserts(NUM_MAINTENANCE))
     f.write("\n\n")
     f.write(generate_evenement_inserts(NUM_EVENEMENT))

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
+<<<<<<< HEAD
     <file url="file://$PROJECT_DIR$/sql/createAllTable.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/sql/createAllTable_combined.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/sql/insert/data.sql" dialect="PostgreSQL" />
@@ -14,5 +15,8 @@
     <file url="file://$PROJECT_DIR$/sql/table/residents.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/sql/table/type_logements.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/sql/table/type_maintenance.sql" dialect="PostgreSQL" />
+=======
+    <file url="file://$PROJECT_DIR$/sql/table/drop.sql" dialect="GenericSQL" />
+>>>>>>> 30d014c (création jeu de données pour les tables maintenance et type_maintenance #1 #6)
   </component>
 </project>
