@@ -115,14 +115,15 @@ INSERT INTO residents_reservations (id_resident, id_reservation)
 VALUES {','.join(values)};"""
 
 
-#TODO
+
 def generate_logements_equipements_inserts(num_links):
     values = []
     pairs = set() # Pour éviter répet des primary key
     while len(pairs) < num_links:
         id_logement = random.randint(1, NUM_LOGEMENTS)
-        id_equipement = random.randint(1, NUM_LINKS_EQUIPEMENTS_LOGEMENTS)
+        id_equipement = random.randint(1, NUM_EQUIPEMENTS_LOGEMENT)
         if(id_logement, id_equipement) not in pairs:
+            pairs.add((id_logement, id_equipement))
             values.append(f"""(
     {id_logement},
     {id_equipement}
@@ -133,7 +134,6 @@ INSERT INTO logements_equipements (id_logement, id_equipement)
 VALUES {','.join(values)};"""
 
 
-#TODO
 def generate_equipements_site_inserts(num_links):
     values = []
     pairs = set() # Pour éviter répet des primary key
@@ -141,6 +141,7 @@ def generate_equipements_site_inserts(num_links):
         id_site = random.randint(1, NUM_SITES)
         id_equipement = random.randint(1, NUM_EQUIPEMENTS_SITE)
         if(id_site, id_equipement) not in pairs:
+            pairs.add((id_site, id_equipement))
             values.append(f"""(
     {id_site},
     {id_equipement}
