@@ -15,23 +15,24 @@ NUM_PROLONGATION=10
 #enums:
 NB_TYPE_LOGEMENTS=8
 NB_CATEGORIE=6
-NUM_MAINTENANCE=7
+NUM_MAINTENANCE=50
 NUM_TYPE_MAINTENANCE = 7
 NUM_EQUIPEMENTS_SITE=11
 NUM_EQUIPEMENTS_LOGEMENT=14
 
 
-def random_country_biased():
-    fake = Faker()
-    countries = ["France"] * 40 + [fake.country() for _ in range(10)]  # Plus de chances d'obtenir "France"
-    return random.choice(countries)
+NUM_LINKS_RESIDENTS_RESERVATIONS=300
 
 #links:
-NUM_LINKS_RESIDENTS_RESERVATIONS=300
 NUM_LINKS_RESIDENTS_CONFLITS=9
 NUM_LINKS_RESIDENTS_EVENEMENT=20
 NUM_LINKS_EQUIPEMENTS_SITE=20
 NUM_LINKS_EQUIPEMENTS_LOGEMENTS=20
+
+def random_country_biased():
+    fake = Faker()
+    countries = ["France"] * 40 + [fake.country() for _ in range(10)]  # Plus de chances d'obtenir "France"
+    return random.choice(countries)
 
 def generate_site_inserts(num_sites):
     values = []
@@ -341,10 +342,10 @@ with open('../sql/insert/data.sql', 'w', encoding='utf-8') as f:
     f.write("\n\n")
     f.write(generate_residents_conflits_inserts(NUM_LINKS_RESIDENTS_CONFLITS))
     f.write("\n\n")
-    # f.write(generate_equipements_site_inserts(NUM_LINKS_EQUIPEMENTS_SITE))
-    # f.write("\n\n")
-    # f.write(generate_logements_equipements_inserts(NUM_LINKS_EQUIPEMENTS_LOGEMENTS))
-    # f.write("\n\n")
+    f.write(generate_equipements_site_inserts(NUM_LINKS_EQUIPEMENTS_SITE))
+    f.write("\n\n")
+    f.write(generate_logements_equipements_inserts(NUM_LINKS_EQUIPEMENTS_LOGEMENTS))
+    f.write("\n\n")
     f.write(generate_maintenance_inserts(NUM_MAINTENANCE))
     f.write("\n\n")
     f.write(generate_evenement_inserts(NUM_EVENEMENT))

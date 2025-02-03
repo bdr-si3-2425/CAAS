@@ -18,5 +18,8 @@ DROP TABLE IF EXISTS evenement;
 DROP TABLE IF EXISTS site;
 DROP TABLE IF EXISTS categorie;
 DROP TABLE IF EXISTS prolongations;
+DROP TRIGGER IF EXISTS VerifyResDate ON reservations;
+DROP VIEW IF EXISTS reservations_dates_view;
 
 DROP FUNCTION IF EXISTS get_logements_disponibles(date,date,character varying,character varying,numeric,integer);
+DROP FUNCTION IF EXISTS get_residents_count_by_age(site_id INT, max_age INT);
