@@ -98,12 +98,13 @@ VALUES {','.join(values)};"""
 
 
 def generate_residents_reservations_inserts(num_links):
-    values = []
     pairs = set() # Pour éviter répet des primary key
+    values = []
     while len(pairs) < num_links:
         id_resident = random.randint(1, NUM_RESIDENTS)
-        id_reservation = random.randint(1, NUM_RESERVATION)
+        id_reservation = random.randint(1, NUM_CONFLICTS)
         if(id_resident, id_reservation) not in pairs:
+            pairs.add((id_resident, id_reservation))
             values.append(f"""(
     {id_resident},
     {id_reservation}
@@ -231,7 +232,7 @@ def generate_conflits_inserts(num_conflicts):
 )""")
 
     return f"""
-INSERT INTO conflits (etat, titre, description, date_signalement)
+INSERT INTO conflits (resolu, titre, description, date_signalement)
 VALUES {','.join(values)};"""
 
 def generate_residents_conflits_inserts(num_links):

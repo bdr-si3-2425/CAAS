@@ -2,7 +2,7 @@
 
 CREATE TABLE conflits (
     id_conflit SERIAL PRIMARY KEY,
-    etat BOOLEAN DEFAULT FALSE NOT NULL,
+    resolu BOOLEAN DEFAULT FALSE NOT NULL,
     titre VARCHAR(255) NOT NULL,
     description TEXT,
     date_signalement DATE DEFAULT CURRENT_DATE NOT NULL,

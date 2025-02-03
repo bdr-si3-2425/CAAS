@@ -15,3 +15,10 @@ CREATE TABLE residents_reservations (
     FOREIGN KEY (id_resident) REFERENCES residents(id_resident),
     FOREIGN KEY (id_reservation) REFERENCES reservations(id_reservation)
 );
+
+CREATE TABLE prolongations (
+    id_prolongation SERIAL PRIMARY KEY,
+    id_reservation INT NOT NULL, 
+    FOREIGN KEY (id_reservation) REFERENCES reservations(id_reservation),
+    date_fin_reservation DATE NOT NULL
+);

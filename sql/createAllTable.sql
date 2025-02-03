@@ -28,5 +28,7 @@
 -- Enums
 \i 'insert/enum.sql'
 
+\i 'insert/data.sql'
+
 -- Queries
 \i 'query/get_logements.sql'
