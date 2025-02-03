@@ -34,3 +34,5 @@
 \i 'query/get_logements.sql'
 
 \i 'query/orga_event.sql'
+
+\i 'query/reservations_date_view.sql'

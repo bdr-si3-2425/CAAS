@@ -16,4 +16,3 @@ FROM
 ORDER BY "Numéro de réservation"
     );
 
-select  * FROM reservations_dates_view;

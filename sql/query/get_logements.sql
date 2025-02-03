@@ -43,25 +43,3 @@ BEGIN
           AND (nb_chambres_min_wanted IS NULL OR l.nb_chambre >= nb_chambres_min_wanted);
 END;
 $$ ;
-
--- Exemples de select :
-SELECT *
-FROM get_logements_disponibles(
-        '2025-07-01',
-        '2025-07-15',
-        'Studio',
-        'Résidence Lemaire',
-        100,
-        2
-     );
-
-
-SELECT *
-FROM get_logements_disponibles(
-        '2025-07-01',
-        '2025-07-15',
-        'Studio',
-        NULL,
-        10,
-        2
-     );
