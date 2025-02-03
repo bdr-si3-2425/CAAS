@@ -138,10 +138,9 @@ def generate_maintenance_inserts(num_maintenance=10):
         titre_index = random.randint(0, len(titres_maintenance) - 1)
         titre = titres_maintenance[titre_index]
         description = descriptions[titre_index]
-
-    for _ in range(num_maintenance):
         values.append(f"""(
-    {fake.date_between(start_date='-600d', end_date='+0d')},
+        
+    '{fake.date_between(start_date='-600d', end_date='+0d')}',
     '{"Description : " +description.replace("'", "''")}',
     '{"Rapport : "+ titre.replace("'", "''")}',
     {fake.boolean()},
@@ -257,8 +256,8 @@ with open('../sql/insert/data.sql', 'w', encoding='utf-8') as f:
     f.write("\n\n")
     f.write(generate_reservations_inserts(NUM_RESERVATION))
     f.write("\n\n")
-    # f.write(generate_residents_reservations_inserts())
-    # f.write("\n\n")
+    #f.write(generate_residents_reservations_inserts(NUM_LINKS_RESIDENTS_RESERVATIONS))
+    #f.write("\n\n")
     f.write(generate_conflits_inserts(NUM_CONFLICTS))
     f.write("\n\n")
     f.write(generate_residents_conflits_inserts(NUM_LINKS_RESIDENTS_CONFLITS))
