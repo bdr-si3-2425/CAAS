@@ -316,7 +316,7 @@ def generate_prolongation_reservation_inserts():
         date_fin_reservation = fake.date_between(start_date='+91d', end_date='+120d') + timedelta(days=random.randint(15, 30))
         values.append(f"""(
     {id_reservation},
-    {date_fin_reservation}
+    '{date_fin_reservation}'
 )""")
 
     return f"""
