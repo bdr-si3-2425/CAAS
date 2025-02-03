@@ -5,10 +5,10 @@ from datetime import datetime, timedelta
 
 fake = Faker(['fr_FR'], seed=0)
 
-NUM_SITES=3
-NUM_LOGEMENTS=8
-NUM_RESIDENTS=25
-NUM_RESERVATION=10
+NUM_SITES=30
+NUM_LOGEMENTS=80
+NUM_RESIDENTS=250
+NUM_RESERVATION=100
 NUM_EVENEMENT=10
 NUM_CONFLICTS=4
 NUM_PROLONGATION=10
@@ -17,6 +17,8 @@ NB_TYPE_LOGEMENTS=8
 NB_CATEGORIE=6
 NUM_MAINTENANCE=7
 NUM_TYPE_MAINTENANCE = 7
+NUM_EQUIPEMENTS_SITE=11
+NUM_EQUIPEMENTS_LOGEMENT=14
 
 
 def random_country_biased():
@@ -25,9 +27,11 @@ def random_country_biased():
     return random.choice(countries)
 
 #links:
-NUM_LINKS_RESIDENTS_RESERVATIONS=30
+NUM_LINKS_RESIDENTS_RESERVATIONS=300
 NUM_LINKS_RESIDENTS_CONFLITS=9
 NUM_LINKS_RESIDENTS_EVENEMENT=20
+NUM_LINKS_EQUIPEMENTS_SITE=20
+NUM_LINKS_EQUIPEMENTS_LOGEMENTS=20
 
 def generate_site_inserts(num_sites):
     values = []
@@ -35,7 +39,7 @@ def generate_site_inserts(num_sites):
         values.append(f"""(
     '{fake.street_address().replace("'", "''")}',
     '{fake.city().replace("'", "''")}',
-    '{random_country_biased()}',
+    '{random_country_biased().replace("'", "''")}',
     {fake.postcode()},
     'Résidence {fake.last_name().replace("'", "''")}',
     {round(random.uniform(1.0, 2.0), 2)}
@@ -82,8 +86,8 @@ VALUES {','.join(values)};"""
 def generate_reservations_inserts(num_reservations):
     values = []
     for _ in range(num_reservations):
-        start_date = fake.date_between(start_date='-30d', end_date='+90d')
-        end_date = start_date + timedelta(days=random.randint(1, 14))
+        start_date = fake.date_between(start_date='-30d', end_date='+30d')
+        end_date = start_date + timedelta(days=random.randint(7, 100))
         values.append(f"""(
     {random.randint(1, NUM_LOGEMENTS)},
     '{start_date}',
@@ -100,7 +104,7 @@ def generate_residents_reservations_inserts(num_links):
     values = []
     while len(pairs) < num_links:
         id_resident = random.randint(1, NUM_RESIDENTS)
-        id_reservation = random.randint(1, NUM_CONFLICTS)
+        id_reservation = random.randint(1, NUM_RESERVATION)
         if(id_resident, id_reservation) not in pairs:
             pairs.add((id_resident, id_reservation))
             values.append(f"""(
@@ -110,6 +114,42 @@ def generate_residents_reservations_inserts(num_links):
 
     return f"""
 INSERT INTO residents_reservations (id_resident, id_reservation)
+VALUES {','.join(values)};"""
+
+
+#TODO
+def generate_logements_equipements_inserts(num_links):
+    values = []
+    pairs = set() # Pour éviter répet des primary key
+    while len(pairs) < num_links:
+        id_logement = random.randint(1, NUM_LOGEMENTS)
+        id_equipement = random.randint(1, NUM_LINKS_EQUIPEMENTS_LOGEMENTS)
+        if(id_logement, id_equipement) not in pairs:
+            values.append(f"""(
+    {id_logement},
+    {id_equipement}
+)""")
+
+    return f"""
+INSERT INTO logements_equipements (id_logement, id_equipement)
+VALUES {','.join(values)};"""
+
+
+#TODO
+def generate_equipements_site_inserts(num_links):
+    values = []
+    pairs = set() # Pour éviter répet des primary key
+    while len(pairs) < num_links:
+        id_site = random.randint(1, NUM_SITES)
+        id_equipement = random.randint(1, NUM_EQUIPEMENTS_SITE)
+        if(id_site, id_equipement) not in pairs:
+            values.append(f"""(
+    {id_site},
+    {id_equipement}
+)""")
+
+    return f"""
+INSERT INTO site_equipements(id_site, id_equipement)
 VALUES {','.join(values)};"""
 
 def generate_maintenance_inserts(num_maintenance=10):
@@ -300,6 +340,10 @@ with open('../sql/insert/data.sql', 'w', encoding='utf-8') as f:
     f.write("\n\n")
     f.write(generate_residents_conflits_inserts(NUM_LINKS_RESIDENTS_CONFLITS))
     f.write("\n\n")
+    # f.write(generate_equipements_site_inserts(NUM_LINKS_EQUIPEMENTS_SITE))
+    # f.write("\n\n")
+    # f.write(generate_logements_equipements_inserts(NUM_LINKS_EQUIPEMENTS_LOGEMENTS))
+    # f.write("\n\n")
     f.write(generate_maintenance_inserts(NUM_MAINTENANCE))
     f.write("\n\n")
     f.write(generate_evenement_inserts(NUM_EVENEMENT))

@@ -9,7 +9,7 @@ VALUES ('Studio', 1.00),
        ('Loft', 1.75);
 
 
-INSERT INTO equipements (nom_equipement)
+INSERT INTO equipements_logement (nom_equipement)
 VALUES ('WiFi'),
        ('Climatisation'),
        ('Lave-linge'),
@@ -25,6 +25,20 @@ VALUES ('WiFi'),
        ('Ascenseur'),
        ('Chauffage'),
        ('Cuisine équipée');
+
+INSERT INTO equipements_site (nom_equipement)
+VALUES ('WiFi'),
+       ('Piscine'),
+       ('Laverie'),
+       ('Bar'),
+       ('Parc'),
+       ('Parking'),
+       ('Parking-vélo'),
+       ('Salle coworking'),
+       ('Rooftop'),
+       ('Hamam'),
+       ('Jardin'),
+       ('Ascenseur');
 
 
 INSERT INTO type_maintenance (type_maintenance)
