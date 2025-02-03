@@ -9,12 +9,13 @@ NUM_LOGEMENTS=8
 NUM_RESIDENTS=25
 NUM_RESERVATION=10
 NUM_EVENEMENT=10
-NUM_CONFLICTS=6
+NUM_CONFLICTS=4
 #enums:
 NB_TYPE_LOGEMENTS=8
 NB_CATEGORIE=6
 NUM_MAINTENANCE=7
-NUM_TYPE_MAINTENANCE = 10;
+NUM_TYPE_MAINTENANCE = 10
+
 
 def random_country_biased():
     fake = Faker()
@@ -23,7 +24,8 @@ def random_country_biased():
 
 #links:
 NUM_LINKS_RESIDENTS_RESERVATIONS=30
-NUM_LINKS_RESIDENTS_CONFLITS=15
+NUM_LINKS_RESIDENTS_CONFLITS=9
+NUM_LINKS_RESIDENTS_EVENEMENT=20
 
 def generate_site_inserts(num_sites):
     values = []
@@ -246,6 +248,23 @@ def generate_evenement_inserts(num_evenement):
 INSERT INTO evenement (id_categorie, titre, id_site, date_evenement, description)
 VALUES {','.join(values)};"""
 
+def generate_residents_evenement_inserts(num_links):
+    pairs = set() # Pour éviter répet des primary key
+    values = []
+    while len(pairs) < num_links:
+        id_resident = random.randint(1, NUM_RESIDENTS)
+        id_evenement = random.randint(1, NUM_EVENEMENT)
+        if(id_resident, id_evenement) not in pairs:
+            pairs.add((id_resident, id_evenement))
+            values.append(f"""(
+    {id_resident},
+    {id_evenement}
+)""")
+
+    return f"""
+INSERT INTO residents_evenement (id_resident, id_evenement)
+VALUES {','.join(values)};"""
+
 # Générer le fichier SQL final
 with open('../sql/insert/data.sql', 'w', encoding='utf-8') as f:
     f.write("-- Insertion des données de test en batch\n\n")
@@ -257,12 +276,14 @@ with open('../sql/insert/data.sql', 'w', encoding='utf-8') as f:
     f.write("\n\n")
     f.write(generate_reservations_inserts(NUM_RESERVATION))
     f.write("\n\n")
-    # f.write(generate_residents_reservations_inserts())
-    # f.write("\n\n")
+    f.write(generate_residents_reservations_inserts(NUM_LINKS_RESIDENTS_RESERVATIONS))
+    f.write("\n\n")
     f.write(generate_conflits_inserts(NUM_CONFLICTS))
     f.write("\n\n")
     f.write(generate_residents_conflits_inserts(NUM_LINKS_RESIDENTS_CONFLITS))
     f.write("\n\n")
-    f.write(generate_maintenance_inserts(NUM_MAINTENANCE))
-    f.write("\n\n")
+    #f.write(generate_maintenance_inserts(NUM_MAINTENANCE))
+    #f.write("\n\n")
     f.write(generate_evenement_inserts(NUM_EVENEMENT))
+    f.write("\n\n")
+    f.write(generate_residents_evenement_inserts(NUM_LINKS_RESIDENTS_EVENEMENT))
