@@ -14,7 +14,7 @@ NUM_CONFLICTS=4
 NB_TYPE_LOGEMENTS=8
 NB_CATEGORIE=6
 NUM_MAINTENANCE=7
-NUM_TYPE_MAINTENANCE = 10
+NUM_TYPE_MAINTENANCE = 7
 
 
 def random_country_biased():
@@ -33,7 +33,7 @@ def generate_site_inserts(num_sites):
         values.append(f"""(
     '{fake.street_address().replace("'", "''")}',
     '{fake.city().replace("'", "''")}',
-    '{random_country_biased()}',
+    '{random_country_biased().replace("'", "''")}',
     {fake.postcode()},
     'Résidence {fake.last_name().replace("'", "''")}',
     {round(random.uniform(1.0, 2.0), 2)}
@@ -281,8 +281,8 @@ with open('../sql/insert/data.sql', 'w', encoding='utf-8') as f:
     f.write("\n\n")
     f.write(generate_residents_conflits_inserts(NUM_LINKS_RESIDENTS_CONFLITS))
     f.write("\n\n")
-    #f.write(generate_maintenance_inserts(NUM_MAINTENANCE))
-    #f.write("\n\n")
+    f.write(generate_maintenance_inserts(NUM_MAINTENANCE))
+    f.write("\n\n")
     f.write(generate_evenement_inserts(NUM_EVENEMENT))
     f.write("\n\n")
     f.write(generate_residents_evenement_inserts(NUM_LINKS_RESIDENTS_EVENEMENT))

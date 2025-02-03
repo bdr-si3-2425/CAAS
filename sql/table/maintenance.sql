@@ -1,7 +1,7 @@
 CREATE TABLE maintenance (
     id_maintenance SERIAL PRIMARY KEY,
     date DATE DEFAULT CURRENT_DATE NOT NULL,
-    description VARCHAR(100) NOT NULL,
+    description VARCHAR(250) NOT NULL,
     rapport VARCHAR(100) NOT NULL,
     urgence BOOLEAN DEFAULT FALSE NOT NULL,
     id_logement INT NOT NULL,
