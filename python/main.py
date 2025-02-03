@@ -192,7 +192,7 @@ def generate_conflits_inserts(num_conflicts):
 )""")
 
     return f"""
-INSERT INTO conflits (reglé, titre, description, date_signalement)
+INSERT INTO conflits (resolu, titre, description, date_signalement)
 VALUES {','.join(values)};"""
 
 def generate_residents_conflits_inserts(num_links):
