@@ -46,4 +46,4 @@ $$;
 
 -- La visualisation des résidents actuels pour un site donné permet d'organiser des événements communautaires.
 SELECT *
-FROM get_residents_count_by_age(2, 100);
+FROM get_residents_count_by_age(1, 100);

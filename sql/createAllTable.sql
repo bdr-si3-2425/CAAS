@@ -32,3 +32,5 @@
 
 -- Queries
 \i 'query/get_logements.sql'
+
+\i 'query/orga_event.sql'
