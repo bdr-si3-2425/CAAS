@@ -14,7 +14,7 @@ NUM_CONFLICTS=4
 NB_TYPE_LOGEMENTS=8
 NB_CATEGORIE=6
 NUM_MAINTENANCE=7
-NUM_TYPE_MAINTENANCE = 10
+NUM_TYPE_MAINTENANCE = 7
 
 
 def random_country_biased():
@@ -94,12 +94,13 @@ VALUES {','.join(values)};"""
 
 
 def generate_residents_reservations_inserts(num_links):
-    values = []
     pairs = set() # Pour éviter répet des primary key
+    values = []
     while len(pairs) < num_links:
         id_resident = random.randint(1, NUM_RESIDENTS)
-        id_reservation = random.randint(1, NUM_RESERVATION)
+        id_reservation = random.randint(1, NUM_CONFLICTS)
         if(id_resident, id_reservation) not in pairs:
+            pairs.add((id_resident, id_reservation))
             values.append(f"""(
     {id_resident},
     {id_reservation}
@@ -275,14 +276,14 @@ with open('../sql/insert/data.sql', 'w', encoding='utf-8') as f:
     f.write("\n\n")
     f.write(generate_reservations_inserts(NUM_RESERVATION))
     f.write("\n\n")
-    # f.write(generate_residents_reservations_inserts())
-    # f.write("\n\n")
+    f.write(generate_residents_reservations_inserts(NUM_LINKS_RESIDENTS_RESERVATIONS))
+    f.write("\n\n")
     f.write(generate_conflits_inserts(NUM_CONFLICTS))
     f.write("\n\n")
     f.write(generate_residents_conflits_inserts(NUM_LINKS_RESIDENTS_CONFLITS))
     f.write("\n\n")
-    #f.write(generate_maintenance_inserts(NUM_MAINTENANCE))
-    #f.write("\n\n")
+    f.write(generate_maintenance_inserts(NUM_MAINTENANCE))
+    f.write("\n\n")
     f.write(generate_evenement_inserts(NUM_EVENEMENT))
     f.write("\n\n")
     f.write(generate_residents_evenement_inserts(NUM_LINKS_RESIDENTS_EVENEMENT))
