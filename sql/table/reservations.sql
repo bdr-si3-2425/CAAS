@@ -17,9 +17,8 @@ CREATE TABLE residents_reservations (
 );
 
 CREATE TABLE prolongations (
-    id_prolongation INT NOT NULL,
-    id_reservation INT NOT NULL,
-    PRIMARY KEY (id_prolongation),
+    id_prolongation SERIAL PRIMARY KEY,
+    id_reservation INT NOT NULL, 
     FOREIGN KEY (id_reservation) REFERENCES reservations(id_reservation),
     date_fin_reservation DATE NOT NULL
 );
