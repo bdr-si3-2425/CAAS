@@ -11,7 +11,9 @@
 
 \i 'table/reservations.sql'
 
-\i 'table/equipements.sql'
+\i 'table/equipements_logement.sql'
+
+\i 'table/equipements_site.sql'
 
 \i 'table/conflits.sql'
 
