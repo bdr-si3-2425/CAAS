@@ -1,3 +1,5 @@
+DROP FUNCTION get_logements_disponibles(date,date,character varying,character varying,numeric,integer)
+
 CREATE OR REPLACE FUNCTION get_logements_disponibles(
     start_date_wanted reservations.date_debut%TYPE,
     end_date_wanted reservations.date_fin%TYPE,
@@ -6,30 +8,30 @@ CREATE OR REPLACE FUNCTION get_logements_disponibles(
     surface_min_wanted logements.surface%TYPE,
     nb_chambres_min_wanted logements.nb_chambre%TYPE
 )   RETURNS TABLE (
-                      id_logement logements.id_logement%TYPE,
-                      id_type_logement logements.id_type_logement%TYPE,
-                      id_site logements.id_site%TYPE,
-                      nb_chambre logements.nb_chambre%TYPE,
-                      nb_lits_simples logements.nb_lits_simples%TYPE,
-                      nb_lits_doubles logements.nb_lits_doubles%TYPE,
-                      surface logements.surface%TYPE
+                      "Numero du logement" logements.id_logement%TYPE,
+                      "Type de logement" type_logements.type_logement%TYPE,
+                      "Nom du site" site.nom_site%TYPE,
+                      "Nombre de chambre" logements.nb_chambre%TYPE,
+                      "Nombre de lits simples" logements.nb_lits_simples%TYPE,
+                      "Nombre de lits doubles" logements.nb_lits_doubles%TYPE,
+                      "Surface du logement en m²" logements.surface%TYPE
                   )
     language plpgsql
-    AS $$
+AS $$
 BEGIN
     RETURN QUERY
         SELECT
             l.id_logement,
-            l.id_type_logement,
-            l.id_site,
+            tl.type_logement,
+            s.nom_site,
             l.nb_chambre,
             l.nb_lits_simples,
             l.nb_lits_doubles,
             l.surface
         FROM logements l
-            LEFT JOIN reservations r ON l.id_logement = r.id_logement
-            JOIN site s on l.id_site = s.id_site
-            JOIN type_logements tl on l.id_type_logement = tl.id_type_logement
+                 LEFT JOIN reservations r ON l.id_logement = r.id_logement
+                 JOIN site s on l.id_site = s.id_site
+                 JOIN type_logements tl on l.id_type_logement = tl.id_type_logement
         WHERE (
             r.id_logement IS NULL
                 OR NOT (
@@ -49,8 +51,8 @@ SELECT *
 FROM get_logements_disponibles(
         '2025-07-01',
         '2025-07-15',
-        'Chalet',
-        'Résidence Gonzalez',
+        'Studio',
+        'Résidence Lemaire',
         100,
      2
      );
@@ -60,8 +62,8 @@ SELECT *
 FROM get_logements_disponibles(
         '2025-07-01',
         '2025-07-15',
-        'Chalet',
+        'Studio',
         NULL,
-        100,
+        10,
         2
      );
