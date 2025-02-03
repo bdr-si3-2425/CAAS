@@ -1,3 +1,4 @@
+from sqlite3 import Cursor
 from faker import Faker
 import random
 from datetime import datetime, timedelta
@@ -10,6 +11,7 @@ NUM_RESIDENTS=25
 NUM_RESERVATION=10
 NUM_EVENEMENT=10
 NUM_CONFLICTS=4
+NUM_PROLONGATION=10
 #enums:
 NB_TYPE_LOGEMENTS=8
 NB_CATEGORIE=6
@@ -265,6 +267,22 @@ def generate_residents_evenement_inserts(num_links):
 INSERT INTO residents_evenement (id_resident, id_evenement)
 VALUES {','.join(values)};"""
 
+
+def generate_prolongation_reservation_inserts():
+    values = []
+    for _ in range (NUM_PROLONGATION):
+        id_reservation = random.randint(1, NUM_RESERVATION)  
+        date_fin_reservation = fake.date_between(start_date='+91d', end_date='+120d') + timedelta(days=random.randint(15, 30))
+        values.append(f"""(
+    {id_reservation},
+    {date_fin_reservation}
+)""")
+
+    return f"""
+INSERT INTO prolongations (id_reservation, date_fin_reservation)
+VALUES {','.join(values)};"""
+
+
 # Générer le fichier SQL final
 with open('../sql/insert/data.sql', 'w', encoding='utf-8') as f:
     f.write("-- Insertion des données de test en batch\n\n")
@@ -287,3 +305,5 @@ with open('../sql/insert/data.sql', 'w', encoding='utf-8') as f:
     f.write(generate_evenement_inserts(NUM_EVENEMENT))
     f.write("\n\n")
     f.write(generate_residents_evenement_inserts(NUM_LINKS_RESIDENTS_EVENEMENT))
+    f.write("\n\n")
+    f.write(generate_prolongation_reservation_inserts())
