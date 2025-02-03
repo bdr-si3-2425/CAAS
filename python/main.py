@@ -4,10 +4,10 @@ from datetime import datetime, timedelta
 
 fake = Faker(['fr_FR'], seed=0)
 
-NUM_SITES=3
-NUM_LOGEMENTS=8
-NUM_RESIDENTS=25
-NUM_RESERVATION=10
+NUM_SITES=30
+NUM_LOGEMENTS=80
+NUM_RESIDENTS=250
+NUM_RESERVATION=100
 NUM_EVENEMENT=10
 NUM_CONFLICTS=4
 #enums:
@@ -23,7 +23,7 @@ def random_country_biased():
     return random.choice(countries)
 
 #links:
-NUM_LINKS_RESIDENTS_RESERVATIONS=30
+NUM_LINKS_RESIDENTS_RESERVATIONS=300
 NUM_LINKS_RESIDENTS_CONFLITS=9
 NUM_LINKS_RESIDENTS_EVENEMENT=20
 
@@ -80,8 +80,8 @@ VALUES {','.join(values)};"""
 def generate_reservations_inserts(num_reservations):
     values = []
     for _ in range(num_reservations):
-        start_date = fake.date_between(start_date='-30d', end_date='+90d')
-        end_date = start_date + timedelta(days=random.randint(1, 14))
+        start_date = fake.date_between(start_date='-30d', end_date='+30d')
+        end_date = start_date + timedelta(days=random.randint(7, 100))
         values.append(f"""(
     {random.randint(1, NUM_LOGEMENTS)},
     '{start_date}',
