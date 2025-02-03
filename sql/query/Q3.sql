@@ -36,7 +36,8 @@ FROM logements l
     LEFT JOIN residents_evenement re ON r.id_resident = re.id_resident
     LEFT JOIN evenement e ON re.id_evenement = e.id_evenement
 
-GROUP BY reser.id_reservation,l.id_logement, s.nom_site;
+GROUP BY reser.id_reservation,l.id_logement, s.nom_site
+ORDER BY "Conflit interne ?" DESC, reser.id_reservation;
 
 
 /*
