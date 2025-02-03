@@ -102,7 +102,7 @@ def generate_residents_reservations_inserts(num_links):
     values = []
     while len(pairs) < num_links:
         id_resident = random.randint(1, NUM_RESIDENTS)
-        id_reservation = random.randint(1, NUM_CONFLICTS)
+        id_reservation = random.randint(1, NUM_RESERVATION)
         if(id_resident, id_reservation) not in pairs:
             pairs.add((id_resident, id_reservation))
             values.append(f"""(
