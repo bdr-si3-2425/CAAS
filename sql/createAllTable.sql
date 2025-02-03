@@ -1,6 +1,6 @@
 \i 'table/drop.sql'
 
-
+-- Tables
 \i 'table/residents.sql'
 
 \i 'table/type_logements.sql'
@@ -23,4 +23,8 @@
 
 \i 'table/maintenance.sql'
 
+-- Enums
 \i 'insert/enum.sql'
+
+-- Queries
+\i 'query/get_logements.sql'

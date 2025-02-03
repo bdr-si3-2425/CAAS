@@ -1,5 +1,3 @@
-DROP FUNCTION get_logements_disponibles(date,date,character varying,character varying,numeric,integer)
-
 CREATE OR REPLACE FUNCTION get_logements_disponibles(
     start_date_wanted reservations.date_debut%TYPE,
     end_date_wanted reservations.date_fin%TYPE,
@@ -46,24 +44,3 @@ BEGIN
 END;
 $$ ;
 
--- Le select que jutilisereqiiiis
-SELECT *
-FROM get_logements_disponibles(
-        '2025-07-01',
-        '2025-07-15',
-        'Studio',
-        'Résidence Lemaire',
-        100,
-     2
-     );
-
-
-SELECT *
-FROM get_logements_disponibles(
-        '2025-07-01',
-        '2025-07-15',
-        'Studio',
-        NULL,
-        10,
-        2
-     );
