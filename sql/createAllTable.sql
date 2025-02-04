@@ -26,7 +26,7 @@
 \i 'table/maintenance.sql'
 
 -- Queries
-\i 'query/request_1.sql'
+\i 'query/get_logements_disponibles.sql'
 
 \i 'query/request_6.sql'
 
