@@ -7,12 +7,12 @@ fake = Faker(['fr_FR'], seed=Faker.seed(0))
 
 
 
-NUM_SITES = 85
-NUM_LOGEMENTS = 750
+NUM_SITES = 45
+NUM_LOGEMENTS = 300
 NUM_RESIDENTS = 2000
-NUM_RESERVATION = 1700
-NUM_EVENEMENT = 350
-NUM_CONFLICTS = 300
+NUM_RESERVATION = 2000
+NUM_EVENEMENT = 200
+NUM_CONFLICTS = 100
 NUM_PROLONGATION = 350
 NUM_MAINTENANCE = 300
 
@@ -26,9 +26,9 @@ NUM_EQUIPEMENTS_LOGEMENT=14
 #links:
 NUM_LINKS_RESIDENTS_RESERVATIONS = 3600
 NUM_LINKS_RESIDENTS_CONFLITS = 800
-NUM_LINKS_RESIDENTS_EVENEMENT = 1500
-NUM_LINKS_EQUIPEMENTS_SITE = 150
-NUM_LINKS_EQUIPEMENTS_LOGEMENTS = 1300
+NUM_LINKS_RESIDENTS_EVENEMENT = 1200
+NUM_LINKS_EQUIPEMENTS_SITE = 75
+NUM_LINKS_EQUIPEMENTS_LOGEMENTS = 600
 
 
 
@@ -93,30 +93,15 @@ VALUES {','.join(values)};"""
 
 def generate_reservations_inserts(num_reservations):
     values = []
-    # Pour chaque logement, on stocke les réservations déjà générées sous forme de tuples (start_date, end_date)
-    reservations_by_logement = {}
-
     for _ in range(num_reservations):
-        while True:
-            logement_id = random.randint(1, NUM_LOGEMENTS)
-            start_date = fake.date_between(start_date='-30d', end_date='+30d')
-            end_date = start_date + timedelta(days=random.randint(7, 100))
+        start_date = fake.date_between(start_date='-30d', end_date='+30d')
+        end_date = start_date + timedelta(days=random.randint(7, 100))
+        values.append(f"""(
+    {random.randint(1, NUM_LOGEMENTS)},
+    '{start_date}',
+    '{end_date}'
+)""")
 
-
-            conflit = False
-            for existing_start, existing_end in reservations_by_logement.get(logement_id, []):
-                if start_date <= existing_end and end_date >= existing_start:
-                    conflit = True
-                    break
-
-            if not conflit:
-                reservations_by_logement.setdefault(logement_id, []).append((start_date, end_date))
-                values.append(f"""(
-        {logement_id},
-        '{start_date}',
-        '{end_date}'
-    )""")
-                break
     return f"""
 INSERT INTO reservations (id_logement, date_debut, date_fin)
 VALUES {','.join(values)};"""
@@ -335,7 +320,7 @@ VALUES {','.join(values)};"""
 def generate_prolongation_reservation_inserts():
     values = []
     for _ in range (NUM_PROLONGATION):
-        id_reservation = random.randint(1, NUM_RESERVATION)  
+        id_reservation = random.randint(1, NUM_RESERVATION)
         date_fin_reservation = fake.date_between(start_date='+91d', end_date='+120d') + timedelta(days=random.randint(15, 30))
         values.append(f"""(
     {id_reservation},
