@@ -3,7 +3,7 @@ Question 3- Quels résidents partagent actuellement un logement et quelles sont 
 
 Pour chaque logement actuellement occupé, on voit la liste des résidents qui le partagent, ce qui permet d'identifier les colocataires.
 La table affiche aussi les conflits signalés par ces résidents et les événements auxquels ils ont participé, offrant une vision de leurs interactions.
-Enfin, une colonne indique si un conflit interne existe entre colocataires, en vérifiant si plusieurs résidents d’un même logement sont impliqués dans un même conflit non résolu.
+De plus, une colonne indique si un conflit interne existe entre colocataires, en vérifiant si plusieurs résidents d’un même logement sont impliqués dans un même conflit non résolu.
 Cela permet d'identifier rapidement les logements où des tensions existent et de mieux comprendre la dynamique entre les résidents.
 */
 
