@@ -93,15 +93,30 @@ VALUES {','.join(values)};"""
 
 def generate_reservations_inserts(num_reservations):
     values = []
-    for _ in range(num_reservations):
-        start_date = fake.date_between(start_date='-30d', end_date='+30d')
-        end_date = start_date + timedelta(days=random.randint(7, 100))
-        values.append(f"""(
-    {random.randint(1, NUM_LOGEMENTS)},
-    '{start_date}',
-    '{end_date}'
-)""")
+    # Pour chaque logement, on stocke les réservations déjà générées sous forme de tuples (start_date, end_date)
+    reservations_by_logement = {}
 
+    for _ in range(num_reservations):
+        while True:
+            logement_id = random.randint(1, NUM_LOGEMENTS)
+            start_date = fake.date_between(start_date='-30d', end_date='+30d')
+            end_date = start_date + timedelta(days=random.randint(7, 100))
+
+
+            conflit = False
+            for existing_start, existing_end in reservations_by_logement.get(logement_id, []):
+                if start_date <= existing_end and end_date >= existing_start:
+                    conflit = True
+                    break
+
+            if not conflit:
+                reservations_by_logement.setdefault(logement_id, []).append((start_date, end_date))
+                values.append(f"""(
+        {logement_id},
+        '{start_date}',
+        '{end_date}'
+    )""")
+                break
     return f"""
 INSERT INTO reservations (id_logement, date_debut, date_fin)
 VALUES {','.join(values)};"""
