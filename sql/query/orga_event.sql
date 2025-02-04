@@ -1,5 +1,5 @@
 
-
+-- La fonction get_residents_count_by_age permet de récupérer le nombre de résidents actuels par tranche d'âge pour un site donné.
 
 CREATE OR REPLACE FUNCTION get_residents_count_by_age(site_id INT, max_age INT)
     RETURNS TABLE
@@ -45,5 +45,8 @@ END;
 $$;
 
 -- La visualisation des résidents actuels pour un site donné permet d'organiser des événements communautaires.
+-- Une image orga_event.jpg est disponible pour illustrer le résultat de cette requête.
+-- À l'aide de cette visualisation, il est possible de voir l'âge des résidents actuels pour un site donné.
+-- Et donc d'organiser des événements adaptés à la population.
 SELECT *
-FROM get_residents_count_by_age(1, 100);
+FROM get_residents_count_by_age(4, 100);

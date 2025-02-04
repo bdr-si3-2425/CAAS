@@ -3,7 +3,9 @@ from faker import Faker
 import random
 from datetime import datetime, timedelta
 
-fake = Faker(['fr_FR'], seed=0)
+fake = Faker(['fr_FR'], seed=Faker.seed(0))
+
+
 
 NUM_SITES = 15
 NUM_LOGEMENTS = 150
@@ -54,13 +56,17 @@ VALUES {','.join(values)};"""
 
 def generate_resident_inserts(num_residents):
     values = []
+    mean_age = 35  # Âge moyen
+    std_dev_age = 10  # Écart type de l'âge
+
     for _ in range(num_residents):
-        date = fake.date_between(start_date='-125y', end_date='today')
+        age = int(random.normalvariate(mean_age, std_dev_age))
+        birth_date = datetime.now() - timedelta(days=age * 365)
         values.append(f"""(
-    '{fake.last_name().replace("'", "''")}',
-    '{fake.first_name().replace("'", "''")}',
-    '{fake.phone_number().replace("'", "''")}',
-    '{date}'
+        '{fake.last_name().replace("'", "''")}',
+        '{fake.first_name().replace("'", "''")}',
+        '{fake.phone_number().replace("'", "''")}',
+        '{birth_date.date()}'
 )""")
 
     return f"""
