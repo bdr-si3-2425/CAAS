@@ -35,4 +35,4 @@
 
 \i 'query/orga_event.sql'
 
-\i 'query/reservations_date_view.sql'
+\i 'query/reservations_dates_view.sql'
