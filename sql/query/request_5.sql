@@ -1,30 +1,6 @@
--- 1. Quels logements sont disponibles pour une période donnée, selon des critères spécifiques (type, emplacement, prix) ?
-
--- Exemples de select Pour avoir les logements disponibles à une période donnée :
-SELECT *
-FROM get_logements_disponibles(
-        '2025-07-01',
-        '2025-07-15',
-        'Studio',
-        'Résidence Lemaire',
-        100,
-        2
-     );
-
-
-SELECT *
-FROM get_logements_disponibles(
-        '2025-07-01',
-        '2025-07-15',
-        'Studio',
-        NULL,
-        100,
-        2
-     );
-
 -- 5. Quels résidents ont prolongé leur séjour ?
 
--- 5.1. Affichage des résidents pour chaque réservation qui a été prolongée (et détail sur logement reservé et résident(s))
+-- 5.1. Affichage des résidents pour chaque réservation qui a été prolongé (et détail sur logement reservé et résident(s))
 SELECT
     resident.nom AS "Nom",
     resident.prenom AS "Prénom",
@@ -39,7 +15,7 @@ SELECT
 FROM residents resident
          JOIN residents_reservations ON resident.id_resident = residents_reservations.id_resident
          JOIN prolongations prolongation ON prolongation.id_reservation= residents_reservations.id_reservation
-        JOIN reservations reservation ON prolongation.id_reservation = reservation.id_reservation
+         JOIN reservations reservation ON prolongation.id_reservation = reservation.id_reservation
          JOIN logements ON logements.id_logement =  reservation.id_logement
          JOIN type_logements typeL ON logements.id_type_logement = typeL.id_type_logement
          JOIN site s ON logements.id_site = s.id_site;
@@ -61,8 +37,8 @@ SELECT
     reservation."Date de fin"
 
 FROM residents resident
-    JOIN residents_reservations ON resident.id_resident = residents_reservations.id_resident
-    JOIN reservations_dates_view reservation ON reservation."Numéro de réservation"= residents_reservations.id_reservation
-    JOIN logements ON logements.id_logement =  reservation."Numéro du logement"
-    JOIN type_logements typeL ON logements.id_type_logement = typeL.id_type_logement
-    JOIN site s ON logements.id_site = s.id_site;
+         JOIN residents_reservations ON resident.id_resident = residents_reservations.id_resident
+         JOIN reservations_dates_view reservation ON reservation."Numéro de réservation"= residents_reservations.id_reservation
+         JOIN logements ON logements.id_logement =  reservation."Numéro du logement"
+         JOIN type_logements typeL ON logements.id_type_logement = typeL.id_type_logement
+         JOIN site s ON logements.id_site = s.id_site;

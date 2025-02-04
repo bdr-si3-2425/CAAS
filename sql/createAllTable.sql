@@ -26,9 +26,9 @@
 \i 'table/maintenance.sql'
 
 -- Queries
-\i 'query/get_logements.sql'
+\i 'query/get_logements_disponibles.sql'
 
-\i 'query/orga_event.sql'
+\i 'query/request_6.sql'
 
 \i 'query/reservations_dates_view.sql'
 

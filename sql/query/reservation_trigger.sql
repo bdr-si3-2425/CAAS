@@ -2,13 +2,9 @@ CREATE OR REPLACE FUNCTION check_reservation_dates()
     RETURNS TRIGGER AS
 $$
 BEGIN
-    IF EXISTS (
-        SELECT 1
-        FROM reservations_dates_view v
-        WHERE v."Numéro du logement" = NEW.id_logement
-          AND v."Date de début" < NEW.date_fin
-          AND v."Date de fin" > NEW.date_debut
-          AND v."Numéro de réservation" <> NEW.id_reservation
+    IF NEW.id_logement NOT IN (
+        SELECT "Numero du logement"
+        FROM get_logements_disponibles(NEW.date_debut, NEW.date_fin, NULL, NULL, NULL, NULL)
     ) THEN
         RAISE EXCEPTION 'Le logement est déjà reservé à ces dates.';
     END IF;
