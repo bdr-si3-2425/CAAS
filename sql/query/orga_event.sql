@@ -45,7 +45,7 @@ END;
 $$;
 
 -- La visualisation des résidents actuels pour un site donné permet d'organiser des événements communautaires.
--- Une image orga_event.jpg est disponible pour illustrer le résultat de cette requête.
+-- Une image orga_event.jpg est disponible pour illustrer le résultat de cette requête. (avec un nombre de résidents plus élevé que dans la base de données)
 -- À l'aide de cette visualisation, il est possible de voir l'âge des résidents actuels pour un site donné.
 -- Et donc d'organiser des événements adaptés à la population.
 SELECT *
