@@ -77,12 +77,15 @@ VALUES {','.join(values)};"""
 def generate_logements_inserts(num_logements):
     values = []
     for _ in range(num_logements):
+        nb_lits_simples=random.randint(0, 4)
+        if nb_lits_simples == 0: nb_lits_doubles=random.randint(1, 2)
+        else: nb_lits_doubles=random.randint(0, 2)
         values.append(f"""(
     {random.randint(1, NB_TYPE_LOGEMENTS)},
     {random.randint(1, NUM_SITES)},
     {random.randint(1, 4)},
-    {random.randint(0, 4)},
-    {random.randint(0, 2)},
+    {nb_lits_simples},
+    {nb_lits_doubles},
     {round(random.uniform(20.0, 150.0), 2)}
 )""")
 
