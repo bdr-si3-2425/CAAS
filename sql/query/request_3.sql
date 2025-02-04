@@ -29,7 +29,7 @@ SELECT
               AND rr1.id_resident < rr2.id_resident
         ) THEN true
         ELSE false
-        END AS "Conflit interne ?"
+        END AS "Conflit interne dans le logement ?"
 
 FROM logements l
          JOIN site s ON l.id_site=s.id_site
@@ -42,4 +42,4 @@ FROM logements l
          LEFT JOIN evenement e ON re.id_evenement = e.id_evenement
 WHERE reser.date_debut<=CURRENT_DATE AND reser.date_fin>=CURRENT_DATE
 GROUP BY reser.id_reservation,l.id_logement, s.nom_site
-ORDER BY "Conflit interne ?" DESC, l.id_logement;
+ORDER BY "Conflit interne dans le logement ?" DESC, l.id_logement;
