@@ -34,6 +34,8 @@
 
 \i 'query/reservation_trigger.sql'
 
+\i 'query/prolongations_TRIGGER.sql'
+
 -- Données
 \i 'insert/enum.sql'
 
