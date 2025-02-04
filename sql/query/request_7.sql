@@ -22,14 +22,14 @@ SELECT
 
     -- Sous-requête pour calculer le nombre moyen d'équipements par logement pour ce type
     round((
-              SELECT AVG(somme.nb_equipements::numeric)
-              FROM (
-                       SELECT COUNT(le2.id_equipement) AS nb_equipements
-                       FROM logements l2
-                                LEFT JOIN logements_equipements le2 ON l2.id_logement = le2.id_logement
-                       WHERE l2.id_type_logement = tl.id_type_logement
-                       GROUP BY l2.id_logement
-                   ) somme
+          SELECT AVG(somme.nb_equipements::numeric)
+          FROM (
+                   SELECT COUNT(le2.id_equipement) AS nb_equipements
+                   FROM logements l2
+                            LEFT JOIN logements_equipements le2 ON l2.id_logement = le2.id_logement
+                   WHERE l2.id_type_logement = tl.id_type_logement
+                   GROUP BY l2.id_logement
+               ) somme
           ),2) AS nb_equipements_moyen,
     -- Sous-requête pour calculer le prix moyen d'une nuit pour ce type de logement
     round((
