@@ -1,13 +1,14 @@
---requête supplémentaire 3 : Nombre moyen d'équipements par type de logement
+--requête supplémentaire 3 : Taux d'occupation de chaque logement
 SELECT
-    t.type_logement,
-    ROUND(AVG(equip_count.nb_equipements), 2) AS moyenne_equipements
-FROM type_logements t
-         JOIN logements l ON t.id_type_logement = l.id_type_logement
-         JOIN (
-    SELECT id_logement, COUNT(*) as nb_equipements
-    FROM logements_equipements
-    GROUP BY id_logement
-) equip_count ON l.id_logement = equip_count.id_logement
-GROUP BY t.type_logement
-ORDER BY moyenne_equipements DESC;
+    l.id_logement,
+    (nb_lits_simples + nb_lits_doubles * 2) AS capacite_totale,
+    COUNT(DISTINCT r.id_resident) AS nombre_residents_actuels,
+    ROUND(COUNT(DISTINCT r.id_resident) * 100.0 / (nb_lits_simples + nb_lits_doubles * 2), 2) AS taux_occupation
+FROM
+    logements l
+        LEFT JOIN reservations res ON l.id_logement = res.id_logement
+        LEFT JOIN residents_reservations rr ON res.id_reservation = rr.id_reservation
+        LEFT JOIN residents r ON rr.id_resident = r.id_resident
+WHERE CURRENT_DATE BETWEEN res.date_debut AND res.date_fin
+GROUP BY
+    l.id_logement, l.nb_lits_simples, l.nb_lits_doubles;
