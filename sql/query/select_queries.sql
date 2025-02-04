@@ -18,7 +18,7 @@ FROM get_logements_disponibles(
         '2025-07-15',
         'Studio',
         NULL,
-        10,
+        100,
         2
      );
 
