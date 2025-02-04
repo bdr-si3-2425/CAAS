@@ -3,31 +3,34 @@ from faker import Faker
 import random
 from datetime import datetime, timedelta
 
-fake = Faker(['fr_FR'], seed=0)
+fake = Faker(['fr_FR'], seed=Faker.seed(0))
 
-NUM_SITES=30
-NUM_LOGEMENTS=80
-NUM_RESIDENTS=250
-NUM_RESERVATION=100
-NUM_EVENEMENT=10
-NUM_CONFLICTS=4
-NUM_PROLONGATION=10
+
+
+NUM_SITES = 15
+NUM_LOGEMENTS = 150
+NUM_RESIDENTS = 400
+NUM_RESERVATION = 300
+NUM_EVENEMENT = 50
+NUM_CONFLICTS = 30
+NUM_PROLONGATION = 50
+NUM_MAINTENANCE = 50
+
 #enums:
 NB_TYPE_LOGEMENTS=8
 NB_CATEGORIE=6
-NUM_MAINTENANCE=50
 NUM_TYPE_MAINTENANCE = 7
 NUM_EQUIPEMENTS_SITE=11
 NUM_EQUIPEMENTS_LOGEMENT=14
 
-
-NUM_LINKS_RESIDENTS_RESERVATIONS=300
-
 #links:
-NUM_LINKS_RESIDENTS_CONFLITS=9
-NUM_LINKS_RESIDENTS_EVENEMENT=20
-NUM_LINKS_EQUIPEMENTS_SITE=20
-NUM_LINKS_EQUIPEMENTS_LOGEMENTS=20
+NUM_LINKS_RESIDENTS_RESERVATIONS = 700
+NUM_LINKS_RESIDENTS_CONFLITS = 120
+NUM_LINKS_RESIDENTS_EVENEMENT = 300
+NUM_LINKS_EQUIPEMENTS_SITE = 35
+NUM_LINKS_EQUIPEMENTS_LOGEMENTS = 200
+
+
 
 def random_country_biased():
     fake = Faker()
@@ -53,13 +56,17 @@ VALUES {','.join(values)};"""
 
 def generate_resident_inserts(num_residents):
     values = []
+    mean_age = 35  # Âge moyen
+    std_dev_age = 10  # Écart type de l'âge
+
     for _ in range(num_residents):
-        date = fake.date_between(start_date='-125y', end_date='today')
+        age = int(random.normalvariate(mean_age, std_dev_age))
+        birth_date = datetime.now() - timedelta(days=age * 365)
         values.append(f"""(
-    '{fake.last_name().replace("'", "''")}',
-    '{fake.first_name().replace("'", "''")}',
-    '{fake.phone_number().replace("'", "''")}',
-    '{date}'
+        '{fake.last_name().replace("'", "''")}',
+        '{fake.first_name().replace("'", "''")}',
+        '{fake.phone_number().replace("'", "''")}',
+        '{birth_date.date()}'
 )""")
 
     return f"""

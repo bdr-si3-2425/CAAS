@@ -25,10 +25,16 @@
 
 \i 'table/maintenance.sql'
 
--- Enums
+-- Queries
+\i 'query/get_logements.sql'
+
+\i 'query/orga_event.sql'
+
+\i 'query/reservations_dates_view.sql'
+
+\i 'query/reservation_trigger.sql'
+
+-- Données
 \i 'insert/enum.sql'
 
 \i 'insert/data.sql'
-
--- Queries
-\i 'query/get_logements.sql'
