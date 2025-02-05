@@ -53,7 +53,7 @@ EXECUTE FUNCTION trigger_format_num_tel();
 
 
 -- unit tests
-
+CREATE SCHEMA IF NOT EXISTS test;
 CREATE OR REPLACE PROCEDURE test.test_format_num_tel() LANGUAGE plpgsql AS $$
 BEGIN
     -- arrange
